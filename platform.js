@@ -12,7 +12,8 @@ function setup() {
 }
 
 function draw() {
-	
+	background(0);
+	jeffrey.move();
 	jeffrey.show();
 	p.show();
 }
@@ -26,12 +27,25 @@ class Hero {
 		this.velocityY = velocityY;
 		this.height = height;
 		this.width - width;
-	}
-	
-	
+	}	
 	show() {
 		ellipse(this.x, this.y, this.height, this.width);
 		
+	}
+	
+	move() {
+		if(keyIsPressed(LEFT_ARROW)) {
+			this.x -=5 ;
+		} 
+		if(keyIsPressed(RIGHT_ARROW)) {
+			this.x+=5;
+		} 
+		if(keyIsPressed(UP_ARROW)) {
+			this.y+=5;
+		}
+		if(keyIsPressed(DOWN_ARROW)) {
+			this.y-=5;
+		}
 	}
 
 }
