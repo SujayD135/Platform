@@ -10,23 +10,26 @@ function setup() {
 	let _x = 250;
 	let _y = 150;
 	let height = 10;
-	jeffrey = new Hero();
+	jeffrey = new Hero(10, 10 , 0 , 0);
 	p = new Platform(_x, _y, width);
 }
 
 function draw() {
-	background(0);
+	background("maroon");
 	jeffrey.move();
 	jeffrey.show();
 	p.show();
+	strokeWeight(0);
+	fill("white");
 	text("Score: " +score, 10, 10);
+	checkForFall();
 }
 
 function checkForFall() {
-	if(jeffrey.y > height)
+	if(jeffrey.y > 500)
 	{
 		score--;
-		jeffey.y = 0;
+		jeffrey.y = 0;
 	}
 }
 
@@ -37,11 +40,11 @@ class Hero {
 		this.y = y;
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
-		this.height = 10;
-		this.width = 10;
+		this.height = 15;
+		this.width = 15;
 	}	
 	show() {
-		fill("white");
+		fill("cyan");		
 		ellipse(this.x, this.y, this.width, this.height);
 		
 	}
@@ -54,15 +57,14 @@ class Hero {
 			this.x+=5;
 		} 
 		if(keyIsDown(UP_ARROW)) {
-			this.y+=5;
-		}
-		if(keyIsDown(DOWN_ARROW)) {
 			this.y-=5;
 		}
-		if(jeffrey.contains(this.x, this.y) == false) {
+		if(keyIsDown(DOWN_ARROW)) {
+			this.y+=5;
+		}
+		if(p.contains(this.x, this.y) == false) {
 			this.y++;
 		}
-		
 	}
 
 }
@@ -78,12 +80,15 @@ class Platform {
 
 	
 	show() {
+		fill("gray");
+		stroke(255);
+		strokeWeight(4);
 		rect(this._x,this._y,this.width,this.height);
 	}
 	
 	contains(givenX, givenY) {
-		if(givenX > this.x && givenX < this.x+this.width) {
-			if(givenY > this.y && givenY < this.y+this.height) {
+		if(givenX > this._x && givenX < this._x+this.width) {
+			if(givenY > this._y && givenY < this._y+this.height) {
 				return true;
 			}
 			
