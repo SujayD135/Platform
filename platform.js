@@ -1,9 +1,11 @@
 let jeffrey;
 let p;
 let score = 0;
+var bg;
 
 function setup() {
-	createCanvas(500, 500);
+	bg = loadImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yKYEEZ1baD_GMyJdLcbfXbDt4fgm_Ij_CeNpq_m6eTUCrAlQAg");
+	createCanvas(640, 480);
 	let x = 200;
 	let y = 100;
 	let width = 200;
@@ -15,7 +17,7 @@ function setup() {
 }
 
 function draw() {
-	background("maroon");
+	background(bg);
 	jeffrey.move();
 	jeffrey.show();
 	p.show();
