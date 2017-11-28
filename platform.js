@@ -2,10 +2,11 @@ let jeffrey;
 let p;
 let score = 0;
 var bg;
+let gravity = .2;
 
 function setup() {
 	bg = loadImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yKYEEZ1baD_GMyJdLcbfXbDt4fgm_Ij_CeNpq_m6eTUCrAlQAg");
-	createCanvas(640, 480);
+	createCanvas(windowWidth - 20, windowHeight - 20);
 	let x = 200;
 	let y = 100;
 	let width = 200;
@@ -28,7 +29,7 @@ function draw() {
 }
 
 function checkForFall() {
-	if(jeffrey.y > 500)
+	if(jeffrey.y > windowHeight-20)
 	{
 		score--;
 		jeffrey.y = 0;
@@ -42,8 +43,9 @@ class Hero {
 		this.y = y;
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
-		this.height = 15;
+		this.height = 20
 		this.width = 15;
+		
 	}	
 	show() {
 		fill("cyan");		
@@ -52,21 +54,23 @@ class Hero {
 	}
 	
 	move() {
+		if(p.contains(this.x, this.y+10) == false) {
+			this.velocityY += gravity;
+			this.y += this.velocityY;
+		} else {
+			this.velocityY = 0;
+			this.y = p._y-10;
+			if(keyIsDown(UP_ARROW)) {
+			this.velocityY = -5;
+		}
+		}
 		if(keyIsDown(LEFT_ARROW)) {
 			this.x -=5 ;
 		} 
 		if(keyIsDown(RIGHT_ARROW)) {
 			this.x+=5;
 		} 
-		if(keyIsDown(UP_ARROW)) {
-			this.y-=5;
-		}
-		if(keyIsDown(DOWN_ARROW)) {
-			this.y+=5;
-		}
-		if(p.contains(this.x, this.y) == false) {
-			this.y++;
-		}
+		
 	}
 
 }
