@@ -1,11 +1,13 @@
 let jeffrey;
 let p;
 let score = 0;
-var bg;
+let bg;
 let gravity = .2;
+let character;
 
 function setup() {
 	bg = loadImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yKYEEZ1baD_GMyJdLcbfXbDt4fgm_Ij_CeNpq_m6eTUCrAlQAg");
+	character = loadImage("https://cdn.glitch.com/c221baff-0b59-4ba4-8458-fbac847b7a02%2Fpiq_281286_400x400.png?1511980568753");
 	createCanvas(windowWidth - 20, windowHeight - 20);
 	let x = 200;
 	let y = 100;
@@ -50,6 +52,7 @@ class Hero {
 	show() {
 		fill("cyan");		
 		ellipse(this.x, this.y, this.width, this.height);
+		image(character, jeffrey.x-30, jeffrey.y-40);
 		
 	}
 	
