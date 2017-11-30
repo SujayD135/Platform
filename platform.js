@@ -5,9 +5,13 @@ let bg;
 let gravity = .2;
 let character;
 
-function setup() {
+function preload() {
 	bg = loadImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yKYEEZ1baD_GMyJdLcbfXbDt4fgm_Ij_CeNpq_m6eTUCrAlQAg");
-	character = loadImage("https://cdn.glitch.com/c221baff-0b59-4ba4-8458-fbac847b7a02%2Fpiq_281286_400x400.png?1511980568753");
+	character = loadImage("https://cdn.glitch.com/2db549b8-c431-4ece-b6cb-bf654f6e9187%2Fplz.png?1512066873228");
+}
+
+function setup() {
+	
 	createCanvas(windowWidth - 20, windowHeight - 20);
 	let x = 200;
 	let y = 100;
@@ -35,6 +39,7 @@ function checkForFall() {
 	{
 		score--;
 		jeffrey.y = 0;
+		jeffrey.velocityY = 0;
 	}
 }
 
@@ -45,14 +50,14 @@ class Hero {
 		this.y = y;
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
-		this.height = 20
-		this.width = 15;
+		this.height = .01
+		this.width = .01;
 		
 	}	
 	show() {
 		fill("cyan");		
 		ellipse(this.x, this.y, this.width, this.height);
-		image(character, jeffrey.x-30, jeffrey.y-40);
+		image(character, jeffrey.x-35, jeffrey.y-55, 75, 75);
 		
 	}
 	
